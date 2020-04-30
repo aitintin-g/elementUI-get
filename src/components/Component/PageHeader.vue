@@ -1,16 +1,12 @@
 <!--  -->
 <template>
-<div class='containerCom'>
-    <Header :isShow="true" :isFixed="true" />
-    <div class="container">
-        <section class="main">
-            <NavList />
-            <div class="cube">
-                <section class="cube">
-                    <router-view></router-view>
-                </section>
-            </div>
-        </section>
+<div class="containerLay">
+    <h2>PageHeader 页头</h2>
+    <p>如果页面的路径比较简单，推荐使用页头组件而非面包屑组件。</p>
+    <h3>基础</h3>
+    <div class="demo">
+        <el-page-header @back="goBack" content="详情页面">
+        </el-page-header>
     </div>
 </div>
 </template>
@@ -18,20 +14,16 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import Header from '@/components/Header';
-import NavList from '@/components/NavList';
 
 export default {
 //import引入的组件需要注入到对象中才能使用
-components: {
-    Header,
-    NavList
-},
+name:'PageHeader1',
+components: {},
 data() {
 //这里存放数据
 return {
-
-};
+    
+}
 },
 //监听属性 类似于data概念
 computed: {},
@@ -39,7 +31,9 @@ computed: {},
 watch: {},
 //方法集合
 methods: {
-
+    goBack() {
+        console.log('go back');
+      }
 },
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
@@ -60,8 +54,10 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 </script>
 <style lang='scss' scoped>
 //@import url(); 引入公共css类
-.containerCom{overflow:hidden;}
-.container{width:1140px; margin:0 auto; }
-.main div.cube{padding-left:270px; padding-bottom:100px; box-sizing:border-box; margin-top:80px;}
-.main section.cube{padding-top:50px;}
+.container h2 {color: #1f2f3d;font-weight: 400;font-size: 28px;}
+.container p {color: #5e6d82;font-size: 14px;line-height: 1.5em;margin: 14px 0;}
+.container h3 {color: #1f2f3d;margin: 55px 0 20px; font-size:22px; font-weight:400;}
+.container .demo {border: 1px #ebebeb solid;border-radius: 3px;box-sizing: border-box;padding: 24px;}
+
+
 </style>

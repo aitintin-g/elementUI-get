@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-<div class='headerWrapper'>
+<div class="headerWrapper" :class="{fixed:isFixed}">
     <header class="header">
         <div class="container">
             <h1>
@@ -46,8 +46,9 @@ import {box} from '@/components/JS'
 
 export default {
 //import引入的组件需要注入到对象中才能使用
+name:'Header',
 components: {},
-props:['isShow'],
+props:['isShow','isFixed'],
 data() {
 //这里存放数据
 return {
@@ -63,7 +64,9 @@ watch: {},
 methods: {
     handleToToggle(){
         if(!this.toggle){
-            box();
+            box({
+                isFixed:this.isFixed
+            });
             this.toggle=true;
         }else{
             document.body.removeChild(document.getElementById('contentbox'));
@@ -75,7 +78,8 @@ methods: {
             box({
                 textList:['1.4.13','2.0.11','2.1.0','2.2.2','2.3.9','2.4.11'],
                 pos:[80,150],
-                name:'contentbox2'
+                name:'contentbox2',
+                isFixed:this.isFixed
             });
             this.toggle2=true;
         }else{
@@ -134,5 +138,5 @@ deactivated(){
 .container .nav li.version{margin-left:34px; color:#888; width:71px; height:80px; line-height:80px;}
 .container .nav li.version span{ width:100%; margin-bottom: 6px; padding-left:18px; line-height:40px; display:inline-block;}
 .container .nav li.search input{box-sizing:border-box; width:200px; height:30px; padding:0 15px; border: 1px solid #dcdfe6; border-radius:3px;}
-
+.fixed{position:fixed; z-index:2019;  width:100%;}
 </style>

@@ -1,11 +1,25 @@
 <!--  -->
 <template>
-<div class='box'>
-    <div class="container">
-        <ul class="nav">
-            <li v-for="(item,index) in optsDf.textList" :key="index">{{item}}</li>
-            <div></div>
-        </ul>
+<div class="containerLay">
+    <h2>Calendar calendar</h2>
+    <p>显示日期</p>
+    <h3>基础</h3>
+    <div class="demo">
+        <el-calendar v-model="value">
+        </el-calendar>
+    </div>
+    <h3>自定义内容</h3>
+    <div class="demo">
+        <el-calendar>
+        <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
+        <template
+            slot="dateCell"
+            slot-scope="{date, data}">
+            <p :class="data.isSelected ? 'is-selected' : ''">
+            {{ data.day.split('-').slice(1).join('-') }} {{ data.isSelected ? '✔️' : ''}}
+            </p>
+        </template>
+        </el-calendar>
     </div>
 </div>
 </template>
@@ -16,13 +30,13 @@
 
 export default {
 //import引入的组件需要注入到对象中才能使用
-name:'Box',
+name:'Calendar1',
 components: {},
 data() {
 //这里存放数据
 return {
-
-};
+    value: new Date()       
+}
 },
 //监听属性 类似于data概念
 computed: {},
@@ -51,8 +65,13 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 </script>
 <style lang='scss' scoped>
 //@import url(); 引入公共css类
-.box{position:absolute; top:80px; right:50px; z-index:2019;}
-.nav{background:#fff; box-shadow: 0 2px 12px 0 rgba(0,0,0,.1); width:93px; position:relative;}
-.nav li{width:53px; height:36px; padding:0 20px; font-size:14px; line-height:36px; color:#606266;}
-.nav div{position:absolute; border-bottom:6px #fff solid; border-left:6px transparent solid; border-right:6px transparent solid; top:-6px; left:50%; margin-left:-6px;}
+.container h2 {color: #1f2f3d;font-weight: 400;font-size: 28px;}
+.container p {color: #5e6d82;font-size: 14px;line-height: 1.5em;margin: 14px 0;}
+.container h3 {color: #1f2f3d;margin: 55px 0 20px; font-size:22px; font-weight:400;}
+.container .demo {border: 1px #ebebeb solid;border-radius: 3px;box-sizing: border-box;padding: 24px;}
+
+.is-selected {
+    color: #1989FA;
+  }
+
 </style>

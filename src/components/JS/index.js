@@ -12,7 +12,8 @@ export var box=(function(){
         var optsDf={
             textList:['中文','English','Español','Français'],
             pos:[80,50],
-            name:'contentbox'
+            name:'contentbox',
+            isFixed:false
         }
 
         if(opts){
@@ -40,6 +41,9 @@ export var box=(function(){
         document.body.appendChild(vm.$el);
         vm.$el.style.top=optsDf.pos[0]+'px';
         vm.$el.style.right=optsDf.pos[1]+'px';
+        if(opts.isFixed){
+            vm.$el.style.position='fixed';
+        }
 
     };
 
